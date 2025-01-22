@@ -1,0 +1,83 @@
+We are selecting the guide stars from the Gaia archive. I am working with
+local VOTables.
+
+https://gea.esac.esa.int/archive/
+
+I am using a Galactic Latitude limit of +/-28 deg instead of +/-30 deg, because
+fields near the limit may contain stars at latitudes lower than +/-30 deg.
+Those stars should be taken into consideration for the overlap tests.
+
+I ran these queries:
+
+SELECT source_id, ra, dec, phot_g_mean_mag
+FROM gaiadr3.gaia_source_lite
+WHERE (
+    phot_g_mean_mag <= 12
+    AND (
+        b >= 28
+        OR b <= -28
+        )
+    );
+
+SELECT source_id, ra, dec, phot_g_mean_mag
+FROM gaiadr3.gaia_source_lite
+WHERE (
+    phot_g_mean_mag > 12
+    AND phot_g_mean_mag <= 13
+    AND (
+        b >= 28
+        OR b <= -28
+        )
+    );
+
+    SELECT source_id, ra, dec, phot_g_mean_mag
+FROM gaiadr3.gaia_source_lite
+WHERE (
+    phot_g_mean_mag > 13
+    AND phot_g_mean_mag <= 14
+    AND (
+        b >= 28
+        OR b <= -28
+        )
+    );
+
+SELECT source_id, ra, dec, phot_g_mean_mag
+FROM gaiadr3.gaia_source_lite
+WHERE (
+    phot_g_mean_mag > 14
+    AND phot_g_mean_mag <= 14.5
+    AND (
+        b >= 28
+        OR b <= -28
+        )
+    );
+
+    SELECT source_id, ra, dec, phot_g_mean_mag
+FROM gaiadr3.gaia_source_lite
+WHERE (
+    phot_g_mean_mag > 14.5
+    AND phot_g_mean_mag <= 15
+    AND (
+        b >= 28
+        OR b <= -28
+        )
+    );
+
+SELECT source_id, ra, dec, phot_g_mean_mag
+FROM gaiadr3.gaia_source_lite
+WHERE (
+    phot_g_mean_mag > 15
+    AND phot_g_mean_mag <= 15.4
+    AND (
+        b >= 28
+        OR b <= -28
+        )
+    );
+
+NOTE: 3M sources seems to be a query limit. This is why I started to use
+smaller magnitude bins towards higher magnitudes.
+
+I used the following file naming convention:
+- For the first query: `gaia_g_mag12_b28.vot`
+- For the following queries: `gaia_g_mag12-13_b28.vot` where the magnitude
+  numbers should match the limits of the query.

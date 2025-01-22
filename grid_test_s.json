@@ -1,0 +1,10 @@
+{
+    "fov": 0.12217304763960307,
+    "overlap_ns": 0.061086523819801536,
+    "overlap_ew": 0.017453292519943295,
+    "tilt": 0.0,
+    "dec_lim_north": 0.0,
+    "dec_lim_south": -1.5707963267948966,
+    "gal_lat_lim": 0.5235987755982988,
+    "gal_lat_lim_strict": true
+}
